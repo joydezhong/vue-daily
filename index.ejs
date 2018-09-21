@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Webpack App</title>
+    <link rel="stylesheet" type="text/css" href="<%= htmlWebpackPlugin.files.css[0] %>" />
+</head>
+<body>
+<div id="app">
+    <!--此文件 仅供生产环境编译使用-->
+    Hello App!
+</div>
+
+<script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[0] %>"></script>
+</body>
+</html>
