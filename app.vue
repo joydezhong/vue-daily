@@ -21,17 +21,18 @@
                     <Item
                         v-for="item in list.stories"
                         :data="item"
-                        :key="item.id"></Item>
+                        :key="item.id"
+                        @click.native="handleClick(item.id)"></Item>
                 </div>
             </template>
             <template v-if="type === 'daily'">
                 <Item
                     v-for="item in list"
                     :data="item"
-                    :key="item.id"></Item>
+                    :key="item.id"
+                    @click.native="handleClick(item.id)"></Item>
             </template>
         </div>
-        <Item @click.native="handleClick(item.id)"></Item>
         <daily-article :id="articleId"></daily-article>
     </div>
 </template>
@@ -73,6 +74,7 @@
                 $.ajax.get('theme/' + id).then(res=>{
                     //过滤某个类型的文章
                     this.list = res.stories.filter(item=>item.type !== 1);
+                    this.handleClick(this.list[0].id);
                 })
             },
             handleToRecommend(){
@@ -87,6 +89,7 @@
                 $.ajax.get('news/before/'+prevDay).then(res=>{
                     this.recommendList.push(res);
                     this.isLoading = false;
+                    this.handleClick(res.stories[0].id);
                 })
             },
             //转换为带汉字的年月
